@@ -186,7 +186,7 @@ int send_udp(char srcip[], uint16_t srcport, char dstip[], uint16_t dstport, cha
 
 int main(int argc, char *argv[])
 {
-	long long times;
+	long long unsigned times = 0;
 	int dstport, r;
 	sscanf(argv[2], "%d", &dstport);
 	
@@ -196,23 +196,23 @@ int main(int argc, char *argv[])
 		r = send_udp(randomip(), randomport(), argv[1], dstport, argv[3], strlen(argv[3]));
 		if (r == 1)
 		{
-			printf("%-9d | YES\n", times);
+			printf("%-12llu | YES\n", times);
 		}
 		else if (r == -1)
 		{
-			printf("%-9d | address error\n", times);
+			printf("%-12llu | address error\n", times);
 		}
 		else if (r == -2)
 		{
-			printf("%-9d | permission denied\n", times);
+			printf("%-12llu | permission denied\n", times);
 		}
 		else if (r == -3)
 		{
-			printf("%-9d | setsockopt error\n", times);
+			printf("%-12llu | setsockopt error\n", times);
 		}
 		else if (r == -4)
 		{
-			printf("%-9d | send error\n", times);
+			printf("%-12llu | send error\n", times);
 		}
 	}
 	return 0;
